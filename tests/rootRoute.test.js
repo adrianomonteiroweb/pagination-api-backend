@@ -1,16 +1,17 @@
 const frisby = require('frisby');
 
 const URL = 'https://pagination-api-backend.herokuapp.com/';
+const data = require('../data/dataAPI.json');
 
 describe('Test the api root route.', () => {
-  it.skip('Must return documentation.', async () => {
+  it('Must return documentation.', async () => {
     await frisby
       .get(URL)
       .expect('status', 200)
       .then((response) => {
         const { body } = response;
         
-        expect(data).toContainEqual(JSON.parse(body));
+        expect(data).toEqual(JSON.parse(body));
       })
   });
 });
