@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.3",
+  "info": { 
+    "tritle": "API de paginação - Raro Labs",
+    "description": "Essa API foi desenvolvida a partir de um desafio técnico na Raro Labs, onde foram utilisados basicamente Node.js, Express, Frisby nos tests. Também Eslint por uma melhor formatação de código, documantação via Swagger e deploy no Heroku.",
+    "termsOfService": "https://pagination-api-backend.herokuapp.com/terms",
+    "contact": { 
+      "email": "adrianomonteiroweb@gmail.com" 
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "API rodando localmente na PORT=3000 e HOSTNAME=localhost."
+    },
+    {
+      "url": "https://pagination-api-backend.herokuapp.com",
+      "description": "API rodando online em porta dinâmica ."
+    }
+  ],
+  "paths": {
+    "/pages" : {
+      "post": {
+        "sumary": "Retorno de paginação.",
+        "description": "Essa rota é responsável por buscar o detalhamento da paginação com retorno em forma de array, de acordo com a página atual e como também o número de paginas.",
+        "tags": ["pages"],
+        "requestBody": {
+          "content": {
+            "application;json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pages"
+              },
+              "examples": {
+                "Page": {
+                  "value": {
+                    "currencyPage": "1",
+                    "numberOfPages": "5"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Arrays"
+                },
+                "examples": {
+                  "Arrays": {
+                    "value": ["1", "2", "3"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pages": {
+        "type": "object",
+        "properties": {
+          "currencyPage": {
+            "type": "string"
+          },
+          "numberOfPages": {
+            "type": "string"
+          }
+        }
+      },
+      "Arrays": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
