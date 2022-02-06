@@ -26,6 +26,7 @@
     "dotenv": "^16.0.0",
     "eslint-config-trybe-backend": "^1.0.4",
     "express": "^4.17.2",
-    "flipout": "^1.0.0"
+    "flipout": "^1.0.0",
+    "uuid": "^8.3.2"
   }
 }
