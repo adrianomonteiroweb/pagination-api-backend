@@ -1,7 +1,9 @@
 const express = require('express');
-const routes = require('./routes');
 const swaggerUi = require('swagger-ui-express');
+
 require('dotenv').config();
+
+const routes = require('./routes');
 
 const swaggerDocs = require('./swagger.json');
 
@@ -11,8 +13,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use(routes)
+app.use(routes);
 
 app.listen(PORT, () => console.log(`Online em http://${HOSTNAME}:${PORT}`));

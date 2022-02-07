@@ -1,17 +1,20 @@
 const frisby = require('frisby');
 
-const URL = 'https://pagination-api-backend.herokuapp.com/';
-const data = require('../data/dataAPI.json');
+const URL = 'https://pagination-api-backend.herokuapp.com/pagination';
+const APIResponseFiveCase = require('../data/APIResponseFiveCase.json');
 
 describe('Test the api root route.', () => {
-  it('Must return documentation.', async () => {
+  it('Must return an array of numbers in string type.', async () => {
     await frisby
-      .get(URL)
+      .post(URL, {
+        currentPage: 1,
+        numberOfPages: 5,
+      })
       .expect('status', 200)
       .then((response) => {
-        const { body } = response;
+        const { json } = response;
         
-        expect(data).toEqual(JSON.parse(body));
+        expect(json).toBe(APIResponseFiveCase);
       })
   });
 });
